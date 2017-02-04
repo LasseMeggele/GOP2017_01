@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace GOP_01
 {
-    internal class Opgave33
+    internal class Ils33
     {
         private static void Main(string[] args)
         {

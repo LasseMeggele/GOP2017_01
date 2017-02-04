@@ -3,7 +3,7 @@ using System.IO;
 
 namespace GOP_01
 {
-    class Opgave34
+    class Ils34
     {
         static void Main()
         {

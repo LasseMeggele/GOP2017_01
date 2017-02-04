@@ -3,7 +3,7 @@ using static System.Console;
 
 namespace GOP_01
 {
-    internal class Opgave35
+    internal class Ils35
     {
         private static void Main()
         {

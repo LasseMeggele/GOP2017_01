@@ -2,7 +2,7 @@
 
 namespace GOP_01
 {
-    internal class Program
+    internal class Ils31
     {
         private static void Main(string[] args)
         {
