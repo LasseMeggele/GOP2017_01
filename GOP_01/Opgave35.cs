@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using static System.Console;
 
 namespace GOP_01
@@ -22,8 +23,9 @@ namespace GOP_01
 
                 if (!(h > 0.0) || !(b > 0.0) || !(l > 0.0))
                 {
-                    MessageBox.Show("Højde, brede og længde skal være større end nul.", "fejl i indtastning",
+                    MessageBox.Show("Højde, brede og længde skal være større end nul. Prøv igen. ", "Fejl i indtastning",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Clear();
                     continue;
                 }
 
