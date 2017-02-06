@@ -24,23 +24,27 @@ namespace GOP_01
                     WriteLine($"  {i}: {valutakurserList[i].Name} - {valutakurserList[i].Description}");
                 }
 
-                int selection;
-                int.TryParse(ReadLine(), out selection);
+                int.TryParse(ReadLine(), out int selection);
                 if (!(selection >= 0))
                 {
-                    MessageBox.Show("Du skal vælge en valuta ved at taste tallet ud for den ønskede valuta. ",
-                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        "Du skal vælge en valuta ved at taste tallet ud for den ønskede valuta. ",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     Clear();
                     continue;
                 }
 
                 WriteLine("Indtast beløb der skal omregnes: ");
-                double beloeb;
-                double.TryParse(ReadLine(), out beloeb);
+                double.TryParse(ReadLine(), out double beloeb);
                 if (!(beloeb > 0))
                 {
-                    MessageBox.Show("Indtast et beløb i den vælgte valuta der skal omregnes til danske kroner. ",
-                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        "Indtast et beløb i den vælgte valuta der skal omregnes til danske kroner. ",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     Clear();
                     continue;
                 }
@@ -51,7 +55,6 @@ namespace GOP_01
             }
 
             ReadLine();
-
         }
     }
 
