@@ -1,10 +1,29 @@
-﻿using System.Collections.Generic;
-using static System.Console;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Exercise35.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The exercise 35.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GOP_01
 {
+    using System.Collections.Generic;
+
+    using static System.Console;
+
+    /// <summary>
+    /// The exercise 35.
+    /// </summary>
     internal class Exercise35
     {
+        /// <summary>
+        /// The main.
+        /// </summary>
+        /// <param name="args">
+        /// The args.
+        /// </param>
         public static void Main(string[] args)
         {
             int w, x, y, z;
@@ -29,6 +48,7 @@ namespace GOP_01
                     Clear();
                     continue;
                 }
+
                 break;
             }
 
