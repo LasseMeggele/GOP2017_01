@@ -1,34 +1,50 @@
 ﻿using System;
+using static System.Console;
 using System.IO;
 
 namespace GOP_01
 {
-    class Ils34
+    internal class Ils34
     {
-        static void Main()
+        private static void Main()
         {
             const double rabatsats = 10;
             const string format = "{0,-40}{1,40}";
 
-            Console.WriteLine("Indtast længden på tæppet i meter: ");
-            var laengde = double.Parse(Console.ReadLine());
+            double laengde, brede, kvadratmeterpris;
 
-            Console.WriteLine("Indtast breden af tæppet i meter: ");
-            var brede = double.Parse(Console.ReadLine());
+            while (true)
+            {
+                WriteLine("Indtast længden på tæppet i meter: ");
+                double.TryParse(ReadLine(), out laengde);
 
-            Console.WriteLine("Indtast kvadratmeterprisen: ");
-            var kvadratmeterpris = double.Parse(Console.ReadLine());
+                WriteLine("Indtast breden af tæppet i meter: ");
+                double.TryParse(ReadLine(), out brede);
+
+                WriteLine("Indtast kvadratmeterprisen: ");
+                double.TryParse(ReadLine(), out kvadratmeterpris);
+
+                if (!(laengde > 0.0) || !(brede > 0.0) || !(kvadratmeterpris > 0.0))
+                {
+                    WriteLine("Indtast tæppets længde, brede og kvadratmeterpris, for at beregne den samlede pris.\r\n" +
+                              "Tryk en tast for at prøve igen, eller tryk på CTRL+C for at afbryde. ");
+                    ReadKey();
+                    Clear();
+                    continue;
+                }
+                break;
+            }
 
             var areal = laengde * brede;
             var pris = areal * kvadratmeterpris;
             var rabat = pris * rabatsats / 100;
             var rabatpris = pris - rabat;
 
-            Console.WriteLine($"Antalet af kvadratmeter tæppe er: {areal}m²");
-            Console.WriteLine($"Pris for tæppet er: {pris:c}");
-            Console.WriteLine($"Rabatten er {rabatsats / 100:P}: {rabat:c}");
-            Console.WriteLine($"Samlet pris er {rabatpris:c}");
-            Console.WriteLine();
+            WriteLine($"Antalet af kvadratmeter tæppe er: {areal}m²");
+            WriteLine($"Pris for tæppet er: {pris:c}");
+            WriteLine($"Rabatten er {rabatsats / 100:P}: {rabat:c}");
+            WriteLine($"Samlet pris er {rabatpris:c}");
+            WriteLine();
 
             var s = new string('-', 80) + "\r\n";
             s += string.Format(format, "Faktura", $"{DateTime.Today:D}\r\n");
@@ -43,10 +59,10 @@ namespace GOP_01
             s += string.Format(format, "Tæppets pris i alt:", $"{rabatpris:C}\r\n");
             s += new string('-', 80) + "\r\n";
 
-            Console.WriteLine("Udskriv faktura til fil J/N?");
-            var svar = Console.ReadLine();
-
-            if (svar == "J" || svar == "j")
+            WriteLine("Udskriv faktura til fil J/N?");
+            var svar = ReadLine();
+            
+            if (svar != null && svar.ToUpperInvariant() == "J")
             {
                 var path = Environment.ExpandEnvironmentVariables("%TEMP%\\Faktura.txt");
                 File.WriteAllText(path, s);
