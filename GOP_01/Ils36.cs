@@ -18,11 +18,8 @@ namespace GOP_01
 
             while (true)
             {
-                var result = false;
-
                 WriteLine("Indtast beløb i DKK: ");
-                double beloeb;
-                result = double.TryParse(ReadLine(), out beloeb);
+                var result = double.TryParse(ReadLine(), out double beloeb);
                 if (!result)
                 {
                     MessageBox.Show(
@@ -40,8 +37,7 @@ namespace GOP_01
                     WriteLine($"  {i}: {valutakurserList[i].Name} - {valutakurserList[i].Description}");
                 }
 
-                int selection;
-                result = int.TryParse(ReadLine(), out selection);
+                result = int.TryParse(ReadLine(), out int index);
                 if (!result)
                 {
                     MessageBox.Show(
@@ -54,7 +50,7 @@ namespace GOP_01
                 }
 
                 WriteLine(
-                    $"{beloeb:C} er {(beloeb / valutakurserList[selection].ExchangeRate) * 100:N2} {valutakurserList[selection].Name}");
+                    $"{beloeb:C} er {(beloeb / valutakurserList[index].ExchangeRate) * 100:N2} {valutakurserList[index].Name}");
 
                 break;
             }
