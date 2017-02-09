@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Ils42.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Defines the Ils42 type.
@@ -46,9 +46,9 @@ namespace GOP_01
             else
                 discount = 0;
 
-            WriteLine($"{"Købspris før rabat:", -20} {purchase,6:C2}");
-            WriteLine($"{"Samlet rabat:", -20} {purchase * discount / 100,6:C2}");
-            WriteLine($"{"Pris efter rabat:", -20} {purchase - purchase * discount / 100,6:C2}");
+            WriteLine($"{"Købspris før rabat:",-20} {purchase,18:C2}");
+            WriteLine($"{"Samlet rabat:",-20} {purchase * discount / 100.0D,18:C2}");
+            WriteLine($"{"Pris efter rabat:",-20} {purchase - purchase * discount / 100.0D,18:C2}");
         }
     }
 }
