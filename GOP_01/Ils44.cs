@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using static System.Console;
 
@@ -6,12 +7,40 @@ namespace GOP_01
 {
     internal class Ils44
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            const double rabatsats = 10;
-            const string format = "{0,-40}{1,40}";
+            #region Konstanter og variable
 
+            const string format = "{0,-41}{1,41}";
+
+            string[] kundetyper = { "a", "b", "c" };
+            string kundetype = null;
+            short rabatsats;
             double laengde, brede, kvadratmeterpris;
+
+            #endregion
+
+            #region Indtastning af data
+
+            while (true)
+            {
+                WriteLine(value: "Angiv kundetype: ");
+                foreach (var type in kundetyper)
+                {
+                    WriteLine(value: $"{type.ToUpper(),2}:");
+                }
+                var readLine = ReadLine();
+                if (readLine != null) kundetype = readLine.ToLower();
+
+                if (!Array.Exists(array: kundetyper, match: x => kundetype != null && x == kundetype.ToLower()))
+                {
+                    WriteLine(value: "Angiv kundetype, eller afbryd ved at trykke på CTRL+C. ");
+                    ReadKey();
+                    continue;
+                }
+
+                break;
+            }
 
             while (true)
             {
@@ -35,16 +64,67 @@ namespace GOP_01
                 break;
             }
 
+            #endregion
+
+            #region Beregning
+
             var areal = laengde * brede;
             var pris = areal * kvadratmeterpris;
-            var rabat = pris * rabatsats / 100;
+            double rabat;
+
+            if (kundetype == null) return;
+            switch (kundetype.ToLower())
+            {
+                case "a":
+                {
+                    rabatsats = 5;
+                    rabat = pris * rabatsats / 100.0D;
+                    break;
+                }
+                case "b":
+                {
+                    rabatsats = 10;
+                    rabat = pris * rabatsats / 100.0D;
+                    break;
+                }
+                case "c":
+                {
+                    if (pris > 1000)
+                    {
+                        rabatsats = 10;
+                        rabat = pris * rabatsats / 100.0D;
+                    }
+                    else
+                    {
+                        rabatsats = 0;
+                        rabat = 0.0;
+                    }
+
+                    break;
+                }
+                default:
+                {
+                    rabatsats = 0;
+                    rabat = 0.0;
+                    break;
+                }
+            }
+
             var rabatpris = pris - rabat;
+
+            #endregion
+
+            #region Vis resultat
 
             WriteLine($"Antalet af kvadratmeter tæppe er: {areal}m²");
             WriteLine($"Pris for tæppet er: {pris:c}");
-            WriteLine($"Rabatten er {rabatsats / 100:P}: {rabat:c}");
+            WriteLine($"Rabatten er {rabatsats / 100.0D:P}: {rabat:c}");
             WriteLine($"Samlet pris er {rabatpris:c}");
             WriteLine();
+
+            #endregion
+
+            #region Faktura
 
             var s = new string('-', 80) + "\r\n";
             s += string.Format(format, "Faktura", $"{DateTime.Today:D}\r\n");
@@ -66,9 +146,11 @@ namespace GOP_01
             {
                 var path = Environment.ExpandEnvironmentVariables("%TEMP%\\Faktura.txt");
                 File.WriteAllText(path, s);
-                System.Diagnostics.Process.Start(Environment.ExpandEnvironmentVariables("%SYSTEMROOT%\\notepad.exe"),
+                Process.Start(Environment.ExpandEnvironmentVariables("%SYSTEMROOT%\\notepad.exe"),
                     path);
             }
+
+            #endregion
         }
     }
 }

@@ -41,7 +41,7 @@ namespace GOP_01
 
             if (purchase > 2000)
                 discount = 10;
-            else if (purchase > 1000 && purchase <= 2000)
+            else if (purchase > 1000)
                 discount = 5;
             else
                 discount = 0;
