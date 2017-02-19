@@ -43,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ils53.cs" />
-    <Compile Include="Ils54.cs" />
+    <Compile Include="Ils55.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
