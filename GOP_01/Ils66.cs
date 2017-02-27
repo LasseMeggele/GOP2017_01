@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GOP_01
 {
@@ -14,22 +15,46 @@ namespace GOP_01
             var month = 0;
             var cagePrSquareMeter = 4;
             var maxSquareMeters = 2000;
+            var maxRabbitPairs = cagePrSquareMeter * maxSquareMeters;
 
-            var months = TimeProgression(month, startRabbitPairs, maxSquareMeters * cagePrSquareMeter);
+            var r = new Rabbits(month, startRabbitPairs);
 
-        }
+            //Console.WriteLine($"Total months to fill the farm: {months}");
 
-        private static int TimeProgression(int month, int rabbitPairs, int maxRabbitPairs)
-        {
-            while (rabbitPairs < maxRabbitPairs)
+            while (r.Rabbitpairs <= maxRabbitPairs)
             {
-
+                
                 month++;
             }
-            return month;
+
         }
 
 
-        private static int RabbitMachine(int rabbitPair) => rabbitPair * 3;
+
+        struct Rabbits
+        {
+            public int Age { get; set; }
+            public int Rabbitpairs { get; set; }
+
+            public Rabbits(int age, int rabbitPairs)
+            {
+                this.Age = age;
+                this.Rabbitpairs = rabbitPairs;
+            }
+
+            private static int TimeProgression(int month, int rabbitPairs)
+            {
+                month -= 9;
+                if (month >= 0 && month % 5 == 0)
+                {
+                    rabbitPairs += RabbitMachine(rabbitPairs);
+                }
+
+                return rabbitPairs;
+            }
+
+            private static int RabbitMachine(int rabbitPair) => rabbitPair * 3;
+        }
+
     }
 }
