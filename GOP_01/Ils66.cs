@@ -12,17 +12,24 @@ namespace GOP_01
         {
             var startRabbitPairs = 4;
             var month = 0;
+            var cagePrSquareMeter = 4;
+            var maxSquareMeters = 2000;
 
-
+            var months = TimeProgression(month, startRabbitPairs, maxSquareMeters * cagePrSquareMeter);
 
         }
 
-
-
-
-        private static int RabbitMachine(int rabbitPair)
+        private static int TimeProgression(int month, int rabbitPairs, int maxRabbitPairs)
         {
-            return rabbitPair * 3;
+            while (rabbitPairs < maxRabbitPairs)
+            {
+
+                month++;
+            }
+            return month;
         }
+
+
+        private static int RabbitMachine(int rabbitPair) => rabbitPair * 3;
     }
 }
