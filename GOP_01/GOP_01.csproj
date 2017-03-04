@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ils66.cs" />
+    <Compile Include="Accesory.cs" />
+    <Compile Include="Computer.cs" />
+    <Compile Include="Ils91.cs" />
+    <Compile Include="AssetItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
