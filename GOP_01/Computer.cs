@@ -8,10 +8,8 @@ namespace GOP_01
         public string Serialnumber { get; set; }
         public string AssetTag { get; set; }
         public string Uuid { get; set; }
-        public decimal PurchasePrice { get; set; }
-        public DateTime PurchaseDate { get; set; }
-        public TimeSpan SupportDuration { get; set; }
         public List<string> MacAddress { get; set; }
+        public ServiceContract ServiceContract { get; set; }
 
         internal Computer() {}
 
@@ -22,19 +20,20 @@ namespace GOP_01
             MacAddress = new List<string>();
         }
 
-        internal Computer(string manufacturer, string model, string description, string serialnumber, string uuid, List<string> macAddressList ) : base(manufacturer, model, description)
+        internal Computer(string manufacturer, string model, string description, decimal price, DateTime purchaseDate,
+            string serialnumber, string uuid, List<string> macAddressList, ServiceContract serviceContract)
+            : base(manufacturer, model, description, price, purchaseDate)
         {
-            Manufacturer = manufacturer;
-            Model = model;
-            Description = description;
             Serialnumber = serialnumber;
             Uuid = uuid;
             MacAddress = macAddressList ?? new List<string>();
+            ServiceContract = serviceContract;
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()}; Serialnumber: {Serialnumber}; AssetTag: {AssetTag}; Uuid: {Uuid}, MacAddress: {(MacAddress != null ? string.Join(", ", MacAddress.ToArray()) : null)}";
+            return
+                $"{base.ToString()}; Serialnumber: {Serialnumber}; AssetTag: {AssetTag}; Uuid: {Uuid}, MacAddress: {(MacAddress != null ? string.Join(", ", MacAddress.ToArray()) : null)}";
         }
 
         public override int GetHashCode()

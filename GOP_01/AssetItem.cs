@@ -8,18 +8,22 @@ namespace GOP_01
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public string Description { get; set; }
+        public decimal PurchasePrice { get; set; }
+        public DateTime PurchaseDate { get; set; }
 
         protected AssetItem()
         {
             Id = Guid.NewGuid();
         }
 
-        protected AssetItem(string manufacturer, string model, string description)
+        protected AssetItem(string manufacturer, string model, string description, decimal price, DateTime purchaseDate)
         {
             Id = Guid.NewGuid();
             Manufacturer = manufacturer;
             Model = model;
             Description = description;
+            PurchasePrice = price;
+            PurchaseDate = purchaseDate;
         }
 
         public override string ToString()

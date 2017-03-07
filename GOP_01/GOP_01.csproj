@@ -48,6 +48,8 @@
     <Compile Include="Ils91.cs" />
     <Compile Include="AssetItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContract.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
