@@ -2,7 +2,7 @@
 
 namespace GOP_01
 {
-    internal class Accesory : AssetItem
+    internal class Accesory : Asset
     {
         public string Serialnumber { get; set; }
         public ServiceContract ServiceContract { get; set; }

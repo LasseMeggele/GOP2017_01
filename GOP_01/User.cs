@@ -13,21 +13,21 @@ namespace GOP_01
         public string Name { get; set; }
         public string Department { get; set; }
         public User Manager { get; set; }
-        public List<AssetItem> AssetsItems { get; set; }
+        public List<Asset> AssetsItems { get; set; }
 
         public User()
         {
             Id = Interlocked.Increment(ref _id);
         }
 
-        public User(string username, string name, string department, User manager, List<AssetItem> assetsItems)
+        public User(string username, string name, string department, User manager, List<Asset> assetsItems)
         {
             Id = Interlocked.Increment(ref _id);
             Username = username;
             Name = name;
             Department = department;
             Manager = manager;
-            AssetsItems = assetsItems ?? new List<AssetItem>();
+            AssetsItems = assetsItems ?? new List<Asset>();
         }
 
         public override int GetHashCode()

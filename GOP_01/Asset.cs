@@ -2,7 +2,7 @@
 
 namespace GOP_01
 {
-    internal abstract class AssetItem : IEquatable<AssetItem>
+    internal abstract class Asset : IEquatable<Asset>
     {
         protected Guid Id { get; }
         protected string Manufacturer { get; set; }
@@ -11,12 +11,12 @@ namespace GOP_01
         protected decimal PurchasePrice { get; set; }
         protected DateTime PurchaseDate { get; set; }
 
-        protected AssetItem()
+        protected Asset()
         {
             Id = Guid.NewGuid();
         }
 
-        protected AssetItem(string manufacturer, string model, string description, decimal price, DateTime purchaseDate)
+        protected Asset(string manufacturer, string model, string description, decimal price, DateTime purchaseDate)
         {
             Id = Guid.NewGuid();
             Manufacturer = manufacturer;
@@ -32,7 +32,7 @@ namespace GOP_01
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            var other = obj as AssetItem;
+            var other = obj as Asset;
             return other != null && Equals(other);
         }
 
@@ -50,7 +50,7 @@ namespace GOP_01
             }
         }
 
-        public static bool operator ==(AssetItem a, AssetItem b)
+        public static bool operator ==(Asset a, Asset b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -65,12 +65,12 @@ namespace GOP_01
             return a.Id == b.Id;
         }
 
-        public static bool operator !=(AssetItem a, AssetItem b)
+        public static bool operator !=(Asset a, Asset b)
         {
             return !(a == b);
         }
 
-        public bool Equals(AssetItem other)
+        public bool Equals(Asset other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;

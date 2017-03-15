@@ -27,7 +27,7 @@ namespace GOP_01
             c2.MacAddress = macs;
             c2.MacAddress.Add("34-56-78-90-AB-CD");
             
-            var u1 = new User("lamg", "Lasse Meggele", "IOS", null, new List<AssetItem>(){c2});
+            var u1 = new User("lamg", "Lasse Meggele", "IOS", null, new List<Asset>(){c2});
 
 
             Console.WriteLine(c1.ToString());

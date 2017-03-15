@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GOP_01
 {
-    internal class Computer : AssetItem
+    internal class Computer : Asset
     {
         public string Serialnumber { get; set; }
         public string AssetTag { get; set; }
