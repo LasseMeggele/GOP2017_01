@@ -9,10 +9,17 @@ namespace GOP_01
 
         public Accesory() {}
 
-        public Accesory(string manufacturer, string name, string description, decimal price, DateTime purchaseDate,
-            string serialnumber) : base(manufacturer, name, description, price, purchaseDate)
+        public Accesory(string manufacturer, string model, string description, decimal price, DateTime purchaseDate)
+            : base(manufacturer, model, description, price, purchaseDate)
+        {
+        }
+
+        public Accesory(string manufacturer, string model, string description, decimal price, DateTime purchaseDate,
+            string serialnumber, ServiceContract serviceContract)
+            : base(manufacturer, model, description, price, purchaseDate)
         {
             Serialnumber = serialnumber;
+            ServiceContract = serviceContract;
         }
 
         public override string ToString()

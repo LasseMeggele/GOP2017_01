@@ -2,14 +2,14 @@
 
 namespace GOP_01
 {
-    internal abstract class AssetItem
+    internal abstract class AssetItem : IEquatable<AssetItem>
     {
-        public Guid Id { get; }
-        public string Manufacturer { get; set; }
-        public string Model { get; set; }
-        public string Description { get; set; }
-        public decimal PurchasePrice { get; set; }
-        public DateTime PurchaseDate { get; set; }
+        protected Guid Id { get; }
+        protected string Manufacturer { get; set; }
+        protected string Model { get; set; }
+        protected string Description { get; set; }
+        protected decimal PurchasePrice { get; set; }
+        protected DateTime PurchaseDate { get; set; }
 
         protected AssetItem()
         {
@@ -26,23 +26,28 @@ namespace GOP_01
             PurchaseDate = purchaseDate;
         }
 
-        public override string ToString()
-        {
-            return $"AssetItem: Id:{Id}, Model:{Model}, Description:{Description}";
-        }
+        public override string ToString() => $"AssetItem: Id:{Id}, Model:{Model}, Description:{Description}";
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType()) return false;
-
-            var assetItem = (AssetItem) obj;
-
-            return Id.Equals(assetItem.Id);
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            var other = obj as AssetItem;
+            return other != null && Equals(other);
         }
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode() * 397;
+            unchecked
+            {
+                var hashCode = Id.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Manufacturer?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (Model?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (Description?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ PurchasePrice.GetHashCode();
+                hashCode = (hashCode * 397) ^ PurchaseDate.GetHashCode();
+                return hashCode;
+            }
         }
 
         public static bool operator ==(AssetItem a, AssetItem b)
@@ -63,6 +68,15 @@ namespace GOP_01
         public static bool operator !=(AssetItem a, AssetItem b)
         {
             return !(a == b);
+        }
+
+        public bool Equals(AssetItem other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Id.Equals(other.Id) && string.Equals(Manufacturer, other.Manufacturer) &&
+                   string.Equals(Model, other.Model) && string.Equals(Description, other.Description) &&
+                   PurchasePrice == other.PurchasePrice && PurchaseDate.Equals(other.PurchaseDate);
         }
     }
 }

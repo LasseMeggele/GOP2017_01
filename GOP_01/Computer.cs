@@ -11,22 +11,21 @@ namespace GOP_01
         public List<string> MacAddress { get; set; }
         public ServiceContract ServiceContract { get; set; }
 
-        internal Computer() {}
+        public Computer() {}
 
-        internal Computer(string model, string serialnumber)
+        public Computer(string manufacturer, string model, string description, decimal price, DateTime purchaseDate)
+            : base(manufacturer, model, description, price, purchaseDate)
         {
-            Model = model;
-            Serialnumber = serialnumber;
-            MacAddress = new List<string>();
         }
 
-        internal Computer(string manufacturer, string model, string description, decimal price, DateTime purchaseDate,
-            string serialnumber, string uuid, List<string> macAddressList, ServiceContract serviceContract)
+        public Computer(string manufacturer, string model, string description, decimal price, DateTime purchaseDate,
+            string serialnumber, string assetTag, string uuid, List<string> macAddressList, ServiceContract serviceContract)
             : base(manufacturer, model, description, price, purchaseDate)
         {
             Serialnumber = serialnumber;
             Uuid = uuid;
-            MacAddress = macAddressList ?? new List<string>();
+            AssetTag = assetTag;
+            MacAddress = macAddressList ?? new List<string>(); /* The ?? operator is called the null-coalescing operator https://msdn.microsoft.com/en-us/library/ms173224.aspx */
             ServiceContract = serviceContract;
         }
 

@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="Accesory.cs" />
     <Compile Include="Computer.cs" />
-    <Compile Include="Ils91.cs" />
     <Compile Include="AssetItem.cs" />
+    <Compile Include="Ils91.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContract.cs" />
     <Compile Include="User.cs" />
